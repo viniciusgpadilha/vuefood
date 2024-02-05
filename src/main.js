@@ -1,8 +1,8 @@
 import { createApp, h } from 'vue'
-import DefaultTemplate from './layouts/DefaultTemplate'
+import BaseTemplate from './layouts/BaseTemplate'
 import router from './routes'
 
-const app = createApp(DefaultTemplate)
+const app = createApp(BaseTemplate)
 
 app.use(router)
 
