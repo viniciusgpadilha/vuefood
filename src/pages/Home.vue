@@ -68,3 +68,10 @@
     </div>
   <!-- /.row -->
 </template>
+<script>
+export default {
+    mounted() {
+        this.$store.dispatch('getCompanies')
+    }
+}
+</script>
