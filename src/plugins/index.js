@@ -1,0 +1,1 @@
+require('./Vue3Toastify.js')

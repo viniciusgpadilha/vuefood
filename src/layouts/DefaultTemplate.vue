@@ -1,5 +1,7 @@
 <template>
     <div>
+        <preloader-component></preloader-component>
+
         <header-component/>
         <div class="container container-body"> 
             <router-view></router-view>
@@ -13,11 +15,13 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import HeaderComponent from './_partials/header'
 import FooterComponent from './_partials/footer'
+import PreloaderComponent from '@/components/Preloader'
 
 export default {
     components: {
         HeaderComponent,
-        FooterComponent
+        FooterComponent,
+        PreloaderComponent,
     }
 
 }
