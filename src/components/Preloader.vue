@@ -1,5 +1,5 @@
 <template>
-    <div class="preloader" v-if="preloder">
+    <div class="preloader" v-if="preloader">
         <img src="@/assets/imgs/preloader.gif" alt="Carregando...">
         <p>{{ textPreloader }}</p>
     </div>

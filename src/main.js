@@ -7,6 +7,10 @@ import store from './store'
 
 const app = createApp(BaseTemplate)
 
+app.component(
+    'preloader-component', () => import('./components/Preloader.vue')
+)
+
 app.use(router)
 app.use(store)
 

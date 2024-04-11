@@ -10,9 +10,10 @@ const routes = [
         component: () => import('@/layouts/DefaultTemplate'),
         children: [
             {
-                path: '/loja',
+                path: '/loja/:companyUrl',
                 component: Products,
-                name: 'products'
+                name: 'products',
+                props: true
             },
         
             {
