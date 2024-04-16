@@ -4,15 +4,16 @@ const state = {
     },
     companySelected: {
         name: '',
-        products: {
-            data: []
-        },
+        products: [],
         table: {
             identify: '',
             description: '',
             name: ''
         }
-    }
+    },
+    categoriesCompanySelected: {
+        data: []
+    },
 }
 
 export default state
