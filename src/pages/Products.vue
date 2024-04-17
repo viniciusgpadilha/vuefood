@@ -29,7 +29,7 @@
           Nenhum produto
         </div>
         <div class="col-lg-4 col-md-6 mb-4" v-for="(product, index) in company.products.data" :key="index">
-          <div>
+          <div :class="['card', 'h-100', {'disabled' : productInCart(product)}]">
             <a href="#">
               <img class="card-img-top" :src="product.image" alt="">
             </a>
@@ -73,7 +73,7 @@ export default {
     ...mapState({
       company: state => state.companies.companySelected,
       categories: state => state.companies.categoriesCompanySelected,
-    //   productsCart: state => state.cart.products
+      productsCart: state => state.cart.products
     }),
   },
 
@@ -90,6 +90,10 @@ export default {
       'getCategoriesByCompany',
       'getProductsByCompany',
     ]),
+
+    ...mapMutations({
+      addProdCart: 'ADD_PRODUCT_CART'
+    }),
 
     loadProducts () {
       const params = {
@@ -114,6 +118,18 @@ export default {
 
     categoryInFilter (identify) {
       return identify === this.filters.category ? 'active' : ''
+    },
+
+    productInCart (product) {
+      var inCart = false
+
+      this.productsCart.map((prodCart, index) => {
+        if (prodCart.identify === product.identify) {
+          inCart = true
+        }
+      })
+      
+      return inCart
     }
   },
 }
