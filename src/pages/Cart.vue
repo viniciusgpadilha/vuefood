@@ -62,6 +62,10 @@ export default {
         ...mapState({
             products: state => state.cart.products
         }),
+
+        totalCart() {
+            return 0
+        }
     },
 
     methods: {
