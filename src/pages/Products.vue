@@ -4,7 +4,7 @@
       <h1 class="my-4 title-tenant">
         {{ company.name }} (<a href="#" @click.prevent="removeCompanySelected">x</a>)
       </h1>
-      <!-- <h2 v-if="company.table.identify">
+      <h2 v-if="company.table.identify">
         Mesa: {{ company.table.name }}
         (<a href="#" @click.prevent="removeTableCompany">x</a>)
       </h2>
@@ -13,11 +13,14 @@
           :class="['list-group-item', categoryInFilter('')]"
           @click.prevent="filterByCategory('')">
           Todas
-        </a> -->
-      <a href="#"
-        v-for="(category, index) in categories.data" :key="index">
-        {{ category.name }}
-      </a>
+        </a>
+        <a href="#"
+          v-for="(category, index) in categories.data" :key="index"
+          :class="['list-group-item', categoryInFilter(category.identify)]"
+          @click.prevent="filterByCategory(category.identify)">
+          {{ category.name }}
+        </a>
+      </div>
     </div>
 
     <div class="col-lg-9">
@@ -63,35 +66,55 @@ export default {
     this.getCategoriesByCompany(this.company.uuid)
           .catch(response => this.$vToastify.error('Falha ao Carregar as Categorias', 'Erro'))
 
-    this.getProductsByCompany(this.company.uuid)
-        .catch(response => this.$vToastify.error('Falha ao Carregar os Produtos', 'Erro'))      
-
-    // this.loadProducts()
+    this.loadProducts()
   },
 
   computed: {
     ...mapState({
       company: state => state.companies.companySelected,
       categories: state => state.companies.categoriesCompanySelected,
-      // products: state => state.companies.productsCompanySelected,
     //   productsCart: state => state.cart.products
     }),
+  },
+
+  data() {
+    return {
+      filters: {
+        category: ''
+      }
+    }
   },
 
   methods: {
     ...mapActions([
       'getCategoriesByCompany',
-      'getProductsByCompany'
+      'getProductsByCompany',
     ]),
+
+    loadProducts () {
+      const params = {
+        token_company: this.company.uuid
+      }
+
+      if (this.filters.category) {
+        params.categories = [
+          this.filters.category
+        ]
+      } 
+
+      this.getProductsByCompany(params)
+            .catch(response => this.$vToastify.error('Falha ao Carregar os Produtos', 'Erro'))      
+    },
+
+    filterByCategory (identify) {
+      this.filters.category = identify
+
+      this.loadProducts()
+    },
+
+    categoryInFilter (identify) {
+      return identify === this.filters.category ? 'active' : ''
+    }
   },
-
-//   data() {
-//     return {
-//       filters: {
-//         category: ''
-//       }
-//     }
-//   },
-
 }
 </script>
