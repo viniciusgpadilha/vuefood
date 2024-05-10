@@ -14,7 +14,10 @@
                             </router-link >
                         </li>
                         <li class="nav-item">
-                            <a href="#" v-if="me.name" class="nav-link"> Olá, {{ me.name }} (<span @click.prevent="logout">Sair</span>)</a>
+                            <router-link :to="{name: 'my.orders'}" v-if="me.name" class="nav-link">
+                                Olá, {{ me.name }} (<span @click.prevent="logout"><b>Sair</b></span>)
+                            </router-link>
+                            
                             <router-link v-else :to="{name: 'login'}" class="nav-link">
                                 <i class="fa-solid fa-user"></i> Entrar
                             </router-link >

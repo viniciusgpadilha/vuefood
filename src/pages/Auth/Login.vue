@@ -91,7 +91,7 @@ export default {
             .then((response) => {
               toast.success('Autenticação realizada com sucesso', 'Parabéns')  
 
-              this.$router.push({name: 'home'})
+              this.$router.push({name: 'my.orders'})
             })
             .catch(error => {
               const errorResponse = error.response
@@ -106,7 +106,7 @@ export default {
                 return;
               }
 
-              toast.error('Falha ao registrar', 'Erro')
+              toast.error('Falha ao Autenticar', 'Erro')
             })
             .finally(() => this.loading = false)
     },

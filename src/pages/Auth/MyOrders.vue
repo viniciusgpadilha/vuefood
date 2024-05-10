@@ -3,9 +3,7 @@
         <div class="row my-4">
             <h1 class="title-tenant">Meus Pedidos</h1>
         </div>
-
         <div class="row my-4">
-
             <div class="col-sm-6 my-4" v-for="(order, index) in myOrders.data" :key="index">
                 <div class="card">
                     <div class="card-body">
@@ -17,7 +15,6 @@
                     </div>
                 </div>
             </div>
-            
         </div> <!-- orders -->
     </div>
 </template>
@@ -32,7 +29,7 @@ export default {
         }
 
         this.getMyOrders()
-                .catch(_=> this.$vToastify.error('Falha ao buscar os pedidos', 'Erro'))
+                .catch(response => toast.error('Falha ao Buscar Os Pedidos', 'Erro'))
     },
 
     computed: {
